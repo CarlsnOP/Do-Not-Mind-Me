@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dw50mvwm0pvu3"]
+[gd_scene load_steps=22 format=3 uid="uid://dw50mvwm0pvu3"]
 
+[ext_resource type="Script" path="res://scenes/level_map/level_map.gd" id="1_bhaup"]
 [ext_resource type="Texture2D" uid="uid://cq324b7va4a2j" path="res://assets/spritesheets/grass.png" id="1_m8pwp"]
 [ext_resource type="Texture2D" uid="uid://ddc2pqn7jy57b" path="res://assets/spritesheets/concrete.png" id="2_uauh7"]
 [ext_resource type="Texture2D" uid="uid://c2bt31m2k7vh7" path="res://assets/spritesheets/floor.png" id="3_3hcmf"]
@@ -10,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dm4nluuslpmy5" path="res://scenes/waypoint/waypoiny.tscn" id="8_d71ap"]
 [ext_resource type="PackedScene" uid="uid://c64ivb5gehnbo" path="res://scenes/player/player.tscn" id="9_ujj17"]
 [ext_resource type="PackedScene" uid="uid://bjrm8qg2vrska" path="res://scenes/pick_up/pick_up.tscn" id="10_3iten"]
+[ext_resource type="PackedScene" uid="uid://so363ogj6trj" path="res://scenes/exit/exit.tscn" id="12_n2j5g"]
+[ext_resource type="PackedScene" uid="uid://dsctcfsmfd5lm" path="res://scenes/game_ui/game_ui.tscn" id="13_8xnkp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m34g3"]
 texture = ExtResource("1_m8pwp")
@@ -355,6 +358,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 25.0
 
 [node name="LevelMap" type="Node2D"]
+script = ExtResource("1_bhaup")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-44, -34)
@@ -369,13 +373,38 @@ layer_2/tile_data = PackedInt32Array(196610, 65539, 2, 131074, 3, 0, 262146, 655
 layer_3/name = "floor"
 layer_3/tile_data = PackedInt32Array(196616, 65538, 0, 196611, 65538, 0, 262147, 65538, 0, 327683, 65538, 0, 196612, 65538, 0, 262148, 65538, 0, 327684, 65538, 0, 196613, 65538, 0, 262149, 65538, 0, 327685, 65538, 0, 196614, 65538, 0, 262150, 65538, 0, 327686, 65538, 0, 196615, 65538, 0, 262151, 65538, 0, 327687, 65538, 0, 262152, 65538, 0, 327688, 65538, 0, 393219, 65538, 0, 393220, 65538, 0, 393221, 65538, 0, 786439, 131074, 0, 851975, 131074, 0, 786440, 131074, 0, 851976, 131074, 0, 786441, 131074, 0, 851977, 131074, 0, 786442, 131074, 0, 851978, 131074, 0, 786443, 131074, 0, 851979, 131074, 0, 720903, 131074, 0, 917511, 131074, 0, 720904, 131074, 0, 917512, 131074, 0, 720905, 131074, 0, 917513, 131074, 0, 917514, 131074, 0, 1114128, 2, 1, 1179664, 2, 1, 1245200, 2, 1, 1114129, 2, 1, 1179665, 2, 1, 1245201, 2, 1, 1114130, 2, 1, 1179666, 2, 1, 1245202, 2, 1, 1114131, 2, 1, 1179667, 2, 1, 1245203, 2, 1, 262173, 65538, 0, 327709, 65538, 0, 393245, 65538, 0, 458781, 65538, 0, 524317, 65538, 0, 262174, 65538, 0, 327710, 65538, 0, 393246, 65538, 0, 458782, 65538, 0, 524318, 65538, 0, 327708, 65538, 0, 393244, 65538, 0, 458780, 65538, 0, 524316, 65538, 0, 327711, 65538, 0, 393247, 65538, 0, 458783, 65538, 0, 327712, 65538, 0, 393248, 65538, 0, 983070, 262146, 0, 1048606, 262146, 0, 1114142, 262146, 0, 983071, 262146, 0, 1048607, 262146, 0, 1114143, 262146, 0, 983072, 262146, 0, 1048608, 262146, 0, 1114144, 262146, 0, 983073, 262146, 0, 1048609, 262146, 0, 1114145, 262146, 0, 1048604, 262146, 0, 1114140, 262146, 0, 1179676, 262146, 0, 1048605, 262146, 0, 1114141, 262146, 0, 1179677, 262146, 0, 1179678, 262146, 0, 1179679, 262146, 0, 1179680, 262146, 0, 1114139, 262146, 0, 917537, 262146, 0, 1507362, 262146, 1, 1572898, 262146, 1, 1638434, 262146, 1, 1703970, 262146, 1, 1507363, 262146, 1, 1572899, 262146, 1, 1638435, 262146, 1, 1703971, 262146, 1, 1507364, 262146, 1, 1572900, 262146, 1, 1638436, 262146, 1, 1703972, 262146, 1, 1507365, 262146, 1, 1572901, 262146, 1, 1638437, 262146, 1, 1703973, 262146, 1, 1572897, 262146, 1, 1638433, 262146, 1, 1703969, 262146, 1, 1769506, 262146, 1, 1769507, 262146, 1, 1835018, 2, 2, 1900554, 2, 2, 1835019, 2, 2, 1900555, 2, 2, 1835020, 2, 2, 1900556, 2, 2, 1835021, 2, 2, 1900557, 2, 2, 1835022, 2, 2, 1900558, 2, 2, 1966090, 2, 2, 1966091, 2, 2, 1966092, 2, 2, 1966093, 2, 2, 1966094, 2, 2, 1900559, 2, 2, 1966095, 2, 2, 1507334, 65538, 1, 1572870, 65538, 1, 1507335, 65538, 1, 1572871, 65538, 1, 720943, 65538, 3, 786479, 65538, 3, 852015, 65538, 3, 720944, 65538, 3, 786480, 65538, 3, 852016, 65538, 3, 786481, 65538, 3, 917551, 65538, 3)
 layer_4/name = "deco"
-layer_4/tile_data = PackedInt32Array()
+layer_4/tile_data = PackedInt32Array(196616, 327684, 0, 196611, 4, 1342177280, 196613, 196612, 1610612736, 917512, 393220, 0, 917513, 458756, 0, 917514, 589828, 0, 917511, 327684, 0, 589832, 720900, 0, 524310, 720900, 0, 1310744, 720900, 0, 1310730, 720900, 1610612736, 589861, 720900, 805306368, 1048616, 720900, 1342177280, 1900584, 720900, 1342177280, 1507373, 720900, 0, 1703953, 655364, 0, 1179671, 655364, 1610612736, 1114147, 655364, 805306368, 262165, 655364, 1342177280, 262154, 655364, 1342177280, 1048584, 655364, 0, 1245200, 327684, 0, 1245203, 327684, 0, 1245201, 4, 0, 1245202, 4, 0, 1114129, 196612, 805306368, 1114131, 262148, 0, 1835019, 262148, 0, 1835018, 262148, 0, 1900554, 262148, 0, 1245210, 327684, 0, 1507362, 720900, 0, 1638435, 720900, 1610612736, 1703970, 720900, 805306368, 1507365, 720900, 805306368, 1638437, 720900, 0, 1703972, 720900, 1610612736, 1769507, 720900, 805306368, 1179679, 393220, 0, 1179680, 458756, 0, 1179677, 589828, 0, 983070, 4, 1342177280, 1048604, 262148, 0, 1048605, 262148, 0, 262173, 262148, 0, 327708, 262148, 0, 458782, 720900, 0, 327710, 720900, 1610612736, 720944, 655364, 0, 786481, 655364, 1610612736)
 
 [node name="NPC" parent="." instance=ExtResource("7_spivh")]
-position = Vector2(816, 489)
+position = Vector2(1010, 392)
 patrol_points = NodePath("../Path1")
 
+[node name="NPC2" parent="." instance=ExtResource("7_spivh")]
+position = Vector2(851, 954)
+patrol_points = NodePath("../Path2")
+
+[node name="NPC3" parent="." instance=ExtResource("7_spivh")]
+position = Vector2(2361, 702)
+patrol_points = NodePath("../Path3")
+
+[node name="NPC4" parent="." instance=ExtResource("7_spivh")]
+position = Vector2(1883, 1331)
+patrol_points = NodePath("../Path4")
+
+[node name="NPC5" parent="." instance=ExtResource("7_spivh")]
+position = Vector2(2684, 874)
+patrol_points = NodePath("../Path5")
+
+[node name="NPC6" parent="." instance=ExtResource("7_spivh")]
+position = Vector2(595, 1463)
+patrol_points = NodePath("../Path6")
+
+[node name="NPC7" parent="." instance=ExtResource("7_spivh")]
+position = Vector2(1453, 1520)
+patrol_points = NodePath("../Path6")
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_hlydx")
 
 [node name="Polygon2D" type="Polygon2D" parent="NavigationRegion2D"]
@@ -393,24 +422,124 @@ visible = false
 color = Color(1, 0.466667, 1, 0.392157)
 polygon = PackedVector2Array(1942, 1375, 1940, 1499, 2000, 1501, 2004, 1755, 2066, 1755, 2068, 1811, 2322, 1819, 2324, 1761, 2450, 1755, 2450, 1371)
 
-[node name="Path1" type="Node2D" parent="."]
-
-[node name="Waypoiny" parent="Path1" instance=ExtResource("8_d71ap")]
-position = Vector2(651, 243)
-
-[node name="Waypoiny2" parent="Path1" instance=ExtResource("8_d71ap")]
-position = Vector2(651, 617)
-
-[node name="Waypoiny3" parent="Path1" instance=ExtResource("8_d71ap")]
-position = Vector2(1377, 863)
-
-[node name="Waypoiny4" parent="Path1" instance=ExtResource("8_d71ap")]
-position = Vector2(1313, 379)
-
 [node name="Player" parent="." instance=ExtResource("9_ujj17")]
 position = Vector2(382, 259)
 
 [node name="PickUps" type="Node" parent="."]
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("10_3iten")]
-position = Vector2(248, 302)
+position = Vector2(668, 802)
+
+[node name="PickUp3" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(494, 316)
+
+[node name="PickUp4" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(1783, 511)
+
+[node name="PickUp5" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(1741, 1092)
+
+[node name="PickUp6" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(2445, 816)
+
+[node name="PickUp7" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(2526, 1985)
+
+[node name="PickUp8" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(878, 1790)
+
+[node name="PickUp9" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(3026, 708)
+
+[node name="PickUp10" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(1450, 786)
+
+[node name="PickUp2" parent="PickUps" instance=ExtResource("10_3iten")]
+position = Vector2(374, 1504)
+
+[node name="Exit" parent="." instance=ExtResource("12_n2j5g")]
+position = Vector2(3016, 292)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUi" parent="CanvasLayer" instance=ExtResource("13_8xnkp")]
+
+[node name="Path1" type="Node2D" parent="."]
+
+[node name="Waypoiny" parent="Path1" instance=ExtResource("8_d71ap")]
+position = Vector2(974, 388)
+
+[node name="Waypoiny2" parent="Path1" instance=ExtResource("8_d71ap")]
+position = Vector2(941, 805)
+
+[node name="Waypoiny3" parent="Path1" instance=ExtResource("8_d71ap")]
+position = Vector2(1308, 806)
+
+[node name="Waypoiny4" parent="Path1" instance=ExtResource("8_d71ap")]
+position = Vector2(1313, 379)
+
+[node name="Path2" type="Node2D" parent="."]
+
+[node name="Waypoiny5" parent="Path2" instance=ExtResource("8_d71ap")]
+position = Vector2(849, 951)
+
+[node name="Waypoiny6" parent="Path2" instance=ExtResource("8_d71ap")]
+position = Vector2(1338, 954)
+
+[node name="Waypoiny7" parent="Path2" instance=ExtResource("8_d71ap")]
+position = Vector2(1343, 1352)
+
+[node name="Waypoiny8" parent="Path2" instance=ExtResource("8_d71ap")]
+position = Vector2(833, 1368)
+
+[node name="Path3" type="Node2D" parent="."]
+
+[node name="Waypoiny5" parent="Path3" instance=ExtResource("8_d71ap")]
+position = Vector2(1838, 389)
+
+[node name="Waypoiny6" parent="Path3" instance=ExtResource("8_d71ap")]
+position = Vector2(2361, 386)
+
+[node name="Waypoiny7" parent="Path3" instance=ExtResource("8_d71ap")]
+position = Vector2(2366, 706)
+
+[node name="Waypoiny8" parent="Path3" instance=ExtResource("8_d71ap")]
+position = Vector2(1724, 729)
+
+[node name="Path4" type="Node2D" parent="."]
+
+[node name="Waypoiny5" parent="Path4" instance=ExtResource("8_d71ap")]
+position = Vector2(1882, 1324)
+
+[node name="Waypoiny6" parent="Path4" instance=ExtResource("8_d71ap")]
+position = Vector2(2489, 1335)
+
+[node name="Waypoiny7" parent="Path4" instance=ExtResource("8_d71ap")]
+position = Vector2(2535, 1900)
+
+[node name="Waypoiny8" parent="Path4" instance=ExtResource("8_d71ap")]
+position = Vector2(1896, 1896)
+
+[node name="Path5" type="Node2D" parent="."]
+
+[node name="Waypoiny7" parent="Path5" instance=ExtResource("8_d71ap")]
+position = Vector2(2730, 481)
+
+[node name="Waypoiny8" parent="Path5" instance=ExtResource("8_d71ap")]
+position = Vector2(2723, 1015)
+
+[node name="Path6" type="Node2D" parent="."]
+
+[node name="Waypoiny7" parent="Path6" instance=ExtResource("8_d71ap")]
+position = Vector2(597, 1456)
+
+[node name="Waypoiny8" parent="Path6" instance=ExtResource("8_d71ap")]
+position = Vector2(1805, 1483)
+
+[node name="Path7" type="Node2D" parent="."]
+
+[node name="Waypoiny7" parent="Path7" instance=ExtResource("8_d71ap")]
+position = Vector2(1502, 501)
+
+[node name="Waypoiny8" parent="Path7" instance=ExtResource("8_d71ap")]
+position = Vector2(1452, 1533)

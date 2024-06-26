@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgyyb68kf4dnb"]
+[gd_scene load_steps=8 format=3 uid="uid://bgyyb68kf4dnb"]
 
 [ext_resource type="Script" path="res://scenes/npc/npc.gd" id="1_n6gw4"]
 [ext_resource type="Texture2D" uid="uid://dl1y1puqwwr68" path="res://assets/images/soldier1_gun.png" id="1_ppkqe"]
@@ -45,10 +45,7 @@ _data = {
 "alert": SubResource("Animation_08dfk")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i2jvc"]
-radius = 16.1245
-
-[node name="NPC" type="CharacterBody2D" groups=["npc"]]
+[node name="NPC" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_n6gw4")
 
@@ -62,10 +59,9 @@ shape = SubResource("CircleShape2D_4kvbm")
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 target_desired_distance = 20.0
-avoidance_enabled = true
+debug_enabled = true
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = -37.0
 offset_top = -154.0
 offset_right = 53.0
@@ -98,13 +94,4 @@ libraries = {
 wait_time = 1.5
 autostart = true
 
-[node name="HitArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-shape = SubResource("CircleShape2D_i2jvc")
-
-[connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
-[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

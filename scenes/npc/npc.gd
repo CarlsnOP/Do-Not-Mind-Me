@@ -17,6 +17,9 @@ const SPEED = {
 enum ENEMY_STATE { PATROLLING, CHASING, SEARCHING }
 
 
+const BULLET = preload("res://scenes/bullet/bullet.tscn")
+
+
 @export var patrol_points : NodePath
 
 
@@ -28,6 +31,7 @@ enum ENEMY_STATE { PATROLLING, CHASING, SEARCHING }
 @onready var warning = $warning
 @onready var gasp_sound = $GaspSound
 @onready var animation_player = $AnimationPlayer
+@onready var shoot_timer = $ShootTimer
 
 
 var _waypoints := []
@@ -40,13 +44,18 @@ func _ready():
 	set_physics_process(false)
 	create_wp()
 	_player_ref = get_tree().get_first_node_in_group("player")
+	#call_deferred("set_physics_process", true )
+	call_deferred("late_setup")
+
+func late_setup():
+	await get_tree().physics_frame
 	call_deferred("set_physics_process", true )
 
 func create_wp() -> void:
 	for c in get_node(patrol_points).get_children():
 		_waypoints.append(c.global_position)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("set_target"):
 		nav_agent.target_position = get_global_mouse_position()
 	
@@ -54,7 +63,7 @@ func _physics_process(delta):
 	update_state()
 	update_movement()
 	update_navigation()
-	set_label()
+	#set_label()
 
 func get_fov_angle() -> float:
 	var direction = global_position.direction_to(_player_ref.global_position)
@@ -82,6 +91,8 @@ func update_navigation() -> void:
 	if !nav_agent.is_navigation_finished():
 		var next_path_position: Vector2 = nav_agent.get_next_path_position()
 		sprite_2d.look_at(next_path_position)
+		#var ini_v = global_position.direction_to(next_path_position) * SPEED[_state]
+		#nav_agent.set_velocity(ini_v)
 		velocity = global_position.direction_to(next_path_position) * SPEED[_state]
 		move_and_slide()
 
@@ -144,11 +155,34 @@ func update_state() -> void:
 	set_state(new_state)
 
 #Debug
-func set_label():
-	var s = "Done: %s\n" % nav_agent.is_navigation_finished()
-	s += "Reached: %s\n" % nav_agent.is_target_reached()
-	s += "Target: %s\n" % nav_agent.target_position
-	s += "PlayerDetected: %s\n" % player_detected()
-	s += "fOV: %.2f %s\n" % [get_fov_angle(), ENEMY_STATE.keys()[_state]]
-	s += "Speed: %s %s\n" % [player_in_fov(), SPEED[_state]]
-	label.text = s
+#func set_label():
+	#var s = "Done: %s\n" % nav_agent.is_navigation_finished()
+	#s += "Reached: %s\n" % nav_agent.is_target_reached()
+	#s += "Target: %s\n" % nav_agent.target_position
+	#s += "PlayerDetected: %s\n" % player_detected()
+	#s += "fOV: %.2f %s\n" % [get_fov_angle(), ENEMY_STATE.keys()[_state]]
+	#s += "Speed: %s %s\n" % [player_in_fov(), SPEED[_state]]
+	#label.text = s
+
+func stop_action():
+	set_physics_process(false)
+	shoot_timer.stop()
+
+func shoot() -> void:
+	var target = _player_ref.global_position
+	var b = BULLET.instantiate()
+	b.init(target, global_position)
+	get_tree().root.add_child(b)
+	SoundManager.play_laser(gasp_sound)
+
+func _on_shoot_timer_timeout():
+	if _state != ENEMY_STATE.CHASING:
+		return
+	shoot()
+
+func _on_hit_area_body_entered(_body):
+	SignalManager.on_game_over.emit()
+
+#func _on_nav_agent_velocity_computed(safe_velocity):
+	#velocity = safe_velocity
+	#move_and_slide()

@@ -10,7 +10,7 @@ func _ready():
 
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	move_and_slide()
 	rotation = velocity.angle()

@@ -5,4 +5,5 @@
 [node name="Waypoiny" type="Marker2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_lvep4")

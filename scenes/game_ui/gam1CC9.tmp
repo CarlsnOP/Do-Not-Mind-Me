@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsctcfsmfd5lm"]
+
+[ext_resource type="LabelSettings" uid="uid://qtrcdg84ehua" path="res://assets/LG_32_blue.tres" id="1_g52rv"]
+[ext_resource type="Script" path="res://scenes/game_ui/game_ui.gd" id="1_ildxj"]
+[ext_resource type="LabelSettings" uid="uid://b1fi0fwptqdna" path="res://assets/LG_48_green.tres" id="2_f1erj"]
+[ext_resource type="FontFile" uid="uid://dg6q71702hpj0" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="4_m4qq7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iv6g4"]
+font = ExtResource("4_m4qq7")
+font_size = 128
+font_color = Color(0.952941, 0.258824, 0.270588, 1)
+outline_size = 10
+outline_color = Color(0.247998, 0.000981697, 0.00535629, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m8du7"]
+font = ExtResource("4_m4qq7")
+font_size = 24
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GameUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ildxj")
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScoreLabel" type="Label" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "0 / 100"
+label_settings = ExtResource("1_g52rv")
+
+[node name="ExitLabel" type="Label" parent="MC"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "GO TO EXIT!"
+label_settings = ExtResource("2_f1erj")
+
+[node name="TimeLabel" type="Label" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "1000S"
+label_settings = ExtResource("1_g52rv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.564706, 0.0901961, 0.101961, 0.666667)
+
+[node name="VB" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.5
+offset_top = -51.0
+offset_right = 245.5
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="ColorRect/VB"]
+layout_mode = 2
+text = "YOU DIED!"
+label_settings = SubResource("LabelSettings_iv6g4")
+horizontal_alignment = 1
+
+[node name="GameOverLabel2" type="Label" parent="ColorRect/VB"]
+layout_mode = 2
+text = "Press Space to restart"
+label_settings = SubResource("LabelSettings_m8du7")
+horizontal_alignment = 1
