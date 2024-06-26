@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dw50mvwm0pvu3"]
+[gd_scene load_steps=23 format=3 uid="uid://dw50mvwm0pvu3"]
 
 [ext_resource type="Script" path="res://scenes/level_map/level_map.gd" id="1_bhaup"]
 [ext_resource type="Texture2D" uid="uid://cq324b7va4a2j" path="res://assets/spritesheets/grass.png" id="1_m8pwp"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bjrm8qg2vrska" path="res://scenes/pick_up/pick_up.tscn" id="10_3iten"]
 [ext_resource type="PackedScene" uid="uid://so363ogj6trj" path="res://scenes/exit/exit.tscn" id="12_n2j5g"]
 [ext_resource type="PackedScene" uid="uid://dsctcfsmfd5lm" path="res://scenes/game_ui/game_ui.tscn" id="13_8xnkp"]
+[ext_resource type="AudioStream" uid="uid://cq1eaxob64ycg" path="res://assets/music/007 - Heartbound - Soundtrack - You Don't Belong Here.mp3" id="14_itwb5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m34g3"]
 texture = ExtResource("1_m8pwp")
@@ -543,3 +544,8 @@ position = Vector2(1502, 501)
 
 [node name="Waypoiny8" parent="Path7" instance=ExtResource("8_d71ap")]
 position = Vector2(1452, 1533)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_itwb5")
+volume_db = -10.0
+autoplay = true

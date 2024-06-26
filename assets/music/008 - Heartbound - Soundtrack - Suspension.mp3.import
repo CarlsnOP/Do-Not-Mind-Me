@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://52l06hceetfe"
+path="res://.godot/imported/008 - Heartbound - Soundtrack - Suspension.mp3-50d0f95bb60cee8518db6c4934b7ba85.mp3str"
+
+[deps]
+
+source_file="res://assets/music/008 - Heartbound - Soundtrack - Suspension.mp3"
+dest_files=["res://.godot/imported/008 - Heartbound - Soundtrack - Suspension.mp3-50d0f95bb60cee8518db6c4934b7ba85.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
